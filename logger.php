@@ -21,6 +21,10 @@ if($_POST['password'] == $password){
     $udid = $_POST['udid'];
     $app = $_POST['app'];
 
+    if (!file_exists($path.$app)) {
+      mkdir($path.$app, 0777, true);
+    }
+
     file_put_contents($path.$app.'/'.$udid.'.log', $data);
 
     echo json_encode(array('ok'=>'logged'));
